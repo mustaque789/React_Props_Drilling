@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React Lab</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+        var placement = document.querySelector("#container");
+
+        function Square({ color }) {
+            var squareStyle = {
+                height: 150,
+                width: 150,
+                backgroundColor: color,
+            };
+
+            return <div style={squareStyle}></div>;
+        }
+
+        function Label({ text }) {
+            var labelStyle = {
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+            };
+
+            return <p style={labelStyle}>{text}</p>;
+        }
+
+        function Card({ color, text }) {
+            var cardStyle = {
+                height: 200,
+                width: 150,
+                backgroundColor: "#FFF",
+                filter: "drop-shadow(0px 0px 5px #666)",
+                fontWeight: "bold",
+                padding: "20px",
+            };
+
+            return (
+                <div style={cardStyle}>
+                    <Label text={text} />
+                    <Square color={color} />
+                </div>
+            );
+        }
+
+        var colors = ["#FFA737", "#341FF2", "#888888", "#135531"];
+        var labels = ["Label 1", "Label 2", "Label 3", "Label 4"];
+        var renderData = [];
+
+        for (var i = 0; i < colors.length; i++) {
+            renderData.push(
+                <Card key={i} color={colors[i]} text={labels[i]} />
+            );
+        }
+
+        ReactDOM.render(
+            <div>
+                {renderData}  
+            </div>,
+            placement
+        );
+    </script>
+</body>
+</html>
+
+
+
+
+
+
